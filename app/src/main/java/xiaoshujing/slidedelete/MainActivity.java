@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
                         int x = (int) motionEvent.getX();
                         int y = (int) motionEvent.getY();
                         View childViewUnder = mList.findChildViewUnder(x, y);
-                        if (childViewUnder != null && childViewUnder instanceof SlideView) {
-                            mFocusedItemView = (SlideView) childViewUnder;
+                        SlideView slideView = (SlideView) childViewUnder.findViewById(R.id.slideView);
+                        if (slideView != null) {
+                            mFocusedItemView = slideView;
                         }
                     }
                     default:

@@ -1,6 +1,7 @@
 package xiaoshujing.slidedelete;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,11 +36,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        SlideView slideView = new SlideView(mContext);
+        View view = mLayoutInflater.inflate(R.layout.item_list_full, parent, false);
+        SlideView slideView = (SlideView) view.findViewById(R.id.slideView);
+        //SlideView slideView = new SlideView(mContext);
         View itemView = mLayoutInflater.inflate(R.layout.item_list, null);
+        itemView.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         slideView.setContentView(itemView);
         slideView.setOnSlideListener(mOnSlideViewListener);
-        return new ViewHolder(slideView);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -56,9 +60,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
         TextView mDelete;
+        SlideView mSlideView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            mSlideView = (SlideView) itemView.findViewById(R.id.slideView);
             mTextView = (TextView) itemView.findViewById(R.id.title);
             mDelete = (TextView) itemView.findViewById(R.id.delete);
         }

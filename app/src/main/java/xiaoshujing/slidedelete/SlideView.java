@@ -91,6 +91,7 @@ public class SlideView extends LinearLayout {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
+                requestDisallowInterceptTouchEvent(true);
                 if (!mScroller.isFinished()) {
                     mScroller.abortAnimation();
                 }
@@ -119,6 +120,7 @@ public class SlideView extends LinearLayout {
                 break;
             }
             case MotionEvent.ACTION_UP: {
+                requestDisallowInterceptTouchEvent(false);
                 int newScrollX = 0;
                 if (scrollX - mHolderWidth * 0.75 > 0) {
                     newScrollX = mHolderWidth;
